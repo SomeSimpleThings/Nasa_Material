@@ -21,13 +21,81 @@ class PodViewModel(
         return liveDataForViewToObserve
     }
 
-    private fun sendServerRequest() {
+    fun sendServerRequest() {
         liveDataForViewToObserve.value = PictureOfTheDayResponse.Loading(null)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
             PictureOfTheDayResponse.Error(Throwable("You need API key"))
         } else {
             retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(object :
+                Callback<PictureOfDay> {
+                override fun onResponse(
+                    call: Call<PictureOfDay>,
+                    response: Response<PictureOfDay>
+                ) {
+                    if (response.isSuccessful && response.body() != null) {
+                        liveDataForViewToObserve.value =
+                            PictureOfTheDayResponse.Success(response.body()!!)
+                    } else {
+                        val message = response.message()
+                        if (message.isNullOrEmpty()) {
+                            liveDataForViewToObserve.value =
+                                PictureOfTheDayResponse.Error(Throwable("Unidentified error"))
+                        } else {
+                            liveDataForViewToObserve.value =
+                                PictureOfTheDayResponse.Error(Throwable(message))
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<PictureOfDay>, t: Throwable) {
+                    liveDataForViewToObserve.value = PictureOfTheDayResponse.Error(t)
+                }
+            })
+        }
+    }
+
+    fun getRandom() {
+        liveDataForViewToObserve.value = PictureOfTheDayResponse.Loading(null)
+        val apiKey: String = BuildConfig.NASA_API_KEY
+        if (apiKey.isBlank()) {
+            PictureOfTheDayResponse.Error(Throwable("You need API key"))
+        } else {
+            retrofitImpl.getRetrofitImpl().getRandomPods(apiKey).enqueue(object :
+                Callback<PictureOfDay> {
+                override fun onResponse(
+                    call: Call<PictureOfDay>,
+                    response: Response<PictureOfDay>
+                ) {
+                    if (response.isSuccessful && response.body() != null) {
+                        liveDataForViewToObserve.value =
+                            PictureOfTheDayResponse.Success(response.body()!!)
+                    } else {
+                        val message = response.message()
+                        if (message.isNullOrEmpty()) {
+                            liveDataForViewToObserve.value =
+                                PictureOfTheDayResponse.Error(Throwable("Unidentified error"))
+                        } else {
+                            liveDataForViewToObserve.value =
+                                PictureOfTheDayResponse.Error(Throwable(message))
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<PictureOfDay>, t: Throwable) {
+                    liveDataForViewToObserve.value = PictureOfTheDayResponse.Error(t)
+                }
+            })
+        }
+    }
+
+    fun getYesterday() {
+        liveDataForViewToObserve.value = PictureOfTheDayResponse.Loading(null)
+        val apiKey: String = BuildConfig.NASA_API_KEY
+        if (apiKey.isBlank()) {
+            PictureOfTheDayResponse.Error(Throwable("You need API key"))
+        } else {
+            retrofitImpl.getRetrofitImpl().getConcreteDayPod(apiKey, "2021-04-18").enqueue(object :
                 Callback<PictureOfDay> {
                 override fun onResponse(
                     call: Call<PictureOfDay>,

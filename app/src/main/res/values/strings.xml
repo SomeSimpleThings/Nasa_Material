@@ -3,4 +3,10 @@
     <string name="wiki_helper_text">Max query text size is</string>
     <string name="search_wiki">Type something</string>
     <string name="photo_of_the_day_stub">photo of the day</string>
+    <string name="fab_description">Fab description</string>
+    <string name="favourite">Favourite</string>
+    <string name="settings">Settings</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="random">Random</string>
+    <string name="today">Today</string>
 </resources>

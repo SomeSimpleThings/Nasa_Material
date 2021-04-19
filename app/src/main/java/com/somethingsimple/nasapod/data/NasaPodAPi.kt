@@ -1,6 +1,7 @@
 package com.somethingsimple.nasapod.data
 
 import com.google.gson.GsonBuilder
+import com.somethingsimple.nasapod.BASE_URL
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,28 +12,32 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import java.io.IOException
 
-private const val BASE_URL = "https://api.nasa.gov/"
+
+const val API_APOD = "planetary/apod"
+const val API_QUERYPARAM_APIKEY = "api_key"
+const val API_QUERYPARAM_THUMBS = "thumbs"
+const val API_QUERYPARAM_COUNT = "count"
+const val API_QUERYPARAM_DATE = "date"
 
 interface PictureOfTheDayAPI {
 
-    @GET("planetary/apod")
+    @GET(API_APOD)
     fun getPictureOfTheDay(
-        @Query("api_key") apiKey: String,
-        @Query("thumbs") thumbs: Boolean = true
+        @Query(API_QUERYPARAM_APIKEY) apiKey: String,
+        @Query(API_QUERYPARAM_THUMBS) thumbs: Boolean = true
     ): Call<PictureOfDay>
 
-    @GET("planetary/apod")
+    @GET(API_APOD)
     fun getRandomPods(
-        @Query("api_key") apiKey: String,
-        @Query("count") count: Int = 1,
-        @Query("thumbs") thumbs: Boolean = true
+        @Query(API_QUERYPARAM_APIKEY) apiKey: String,
+        @Query(API_QUERYPARAM_COUNT) count: Int = 1,
     ): Call<PictureOfDay>
 
-    @GET("planetary/apod")
+    @GET(API_APOD)
     fun getConcreteDayPod(
-        @Query("api_key") apiKey: String,
-        @Query("date") date: String,
-        @Query("thumbs") thumbs: Boolean = true
+        @Query(API_QUERYPARAM_APIKEY) apiKey: String,
+        @Query(API_QUERYPARAM_DATE) date: String,
+        @Query(API_QUERYPARAM_THUMBS) thumbs: Boolean = true
     ): Call<PictureOfDay>
 }
 
