@@ -10,6 +10,8 @@ import com.somethingsimple.nasapod.data.PictureOfTheDayResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PodViewModel(
     private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayResponse> = MutableLiveData(),
@@ -62,14 +64,14 @@ class PodViewModel(
             PictureOfTheDayResponse.Error(Throwable("You need API key"))
         } else {
             retrofitImpl.getRetrofitImpl().getRandomPods(apiKey).enqueue(object :
-                Callback<PictureOfDay> {
+                Callback<List<PictureOfDay>> {
                 override fun onResponse(
-                    call: Call<PictureOfDay>,
-                    response: Response<PictureOfDay>
+                    call: Call<List<PictureOfDay>>,
+                    response: Response<List<PictureOfDay>>
                 ) {
                     if (response.isSuccessful && response.body() != null) {
                         liveDataForViewToObserve.value =
-                            PictureOfTheDayResponse.Success(response.body()!!)
+                            PictureOfTheDayResponse.Success(response.body()!![0])
                     } else {
                         val message = response.message()
                         if (message.isNullOrEmpty()) {
@@ -82,7 +84,7 @@ class PodViewModel(
                     }
                 }
 
-                override fun onFailure(call: Call<PictureOfDay>, t: Throwable) {
+                override fun onFailure(call: Call<List<PictureOfDay>>, t: Throwable) {
                     liveDataForViewToObserve.value = PictureOfTheDayResponse.Error(t)
                 }
             })
@@ -95,7 +97,11 @@ class PodViewModel(
         if (apiKey.isBlank()) {
             PictureOfTheDayResponse.Error(Throwable("You need API key"))
         } else {
-            retrofitImpl.getRetrofitImpl().getConcreteDayPod(apiKey, "2021-04-18").enqueue(object :
+            val calendar = Calendar.getInstance()
+            calendar.add(Calendar.DAY_OF_MONTH, -1)
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val dateTime = simpleDateFormat.format(calendar.time).toString()
+            retrofitImpl.getRetrofitImpl().getConcreteDayPod(apiKey, dateTime).enqueue(object :
                 Callback<PictureOfDay> {
                 override fun onResponse(
                     call: Call<PictureOfDay>,

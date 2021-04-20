@@ -31,7 +31,7 @@ interface PictureOfTheDayAPI {
     fun getRandomPods(
         @Query(API_QUERYPARAM_APIKEY) apiKey: String,
         @Query(API_QUERYPARAM_COUNT) count: Int = 1,
-    ): Call<PictureOfDay>
+    ): Call<List<PictureOfDay>>
 
     @GET(API_APOD)
     fun getConcreteDayPod(
