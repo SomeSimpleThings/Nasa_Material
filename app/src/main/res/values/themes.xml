@@ -9,6 +9,37 @@
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
         <item name="colorOnSecondary">@color/black</item>
+        <item name="bottomBarBackgroundTint">@color/primaryColor</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.NASAPOD.Grey" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/greyPrimaryColor</item>
+        <item name="colorPrimaryVariant">@color/greyPrimaryLightColor</item>
+        <item name="colorOnPrimary">@color/greyPrimaryDarkColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/greySecondaryColor</item>
+        <item name="colorSecondaryVariant">@color/greySecondaryLightColor</item>
+        <item name="colorOnSecondary">@color/greySecondaryDarkColor</item>
+        <item name="bottomBarBackgroundTint">@color/greyPrimaryColor</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.NASAPOD.Solarized" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/solarizedPrimaryColor</item>
+        <item name="colorPrimaryVariant">@color/solarizedPrimaryLightColor</item>
+        <item name="colorOnPrimary">@color/solarizedPrimaryDarkColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/solarizedSecondaryColor</item>
+        <item name="colorSecondaryVariant">@color/solarizedSecondaryColor</item>
+        <item name="colorOnSecondary">@color/solarizedSecondaryDarkColor</item>
+        <item name="bottomBarBackgroundTint">@color/solarizedPrimaryColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

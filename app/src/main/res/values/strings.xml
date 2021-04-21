@@ -15,5 +15,10 @@
     <string name="appearance">Appearance</string>
     <string name="dark_mode">Dark mode</string>
     <string name="about">About</string>
+    <string name="pref_force_dark">pref_switch_force_dark</string>
+    <string name="pref_theme">pref_theme_selector</string>
+    <string name="default_theme">default</string>
+    <string name="grey_theme">grey</string>
+    <string name="solarized_theme">solarized</string>
 
 </resources>
