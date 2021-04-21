@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PodLayout">
+        <item name="android:padding">@dimen/default_layout_padding</item>
+    </style>
+
+    <style name="PodTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/secondaryColor</item>
+    </style>
+
+    <style name="PodTextInputLayout.Wiki">
+        <item name="android:hint">@string/search_wiki</item>
+        <item name="counterEnabled">true</item>
+        <item name="counterMaxLength">20</item>
+        <item name="endIconDrawable">@drawable/ic_wikipedia</item>
+        <item name="endIconMode">custom</item>
+        <item name="helperText">@string/wiki_helper_text</item>
+    </style>
+
+    <style name="PodTextView">
+        <item name="android:paddingStart">@dimen/default_layout_padding</item>
+        <item name="android:paddingEnd">@dimen/default_layout_padding</item>
+    </style>
+
+    <style name="PodTextView.ItalicText">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="PodTextView.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:layout_marginTop">@dimen/title_margin_top</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="PodBottomAppBar" parent="Widget.MaterialComponents.BottomAppBar">
+        <item name="android:layout_gravity">bottom</item>
+        <item name="backgroundTint">@color/primaryColor</item>
+    </style>
+
+    <style name="PodBottomAppBar.FabCenter" parent="PodBottomAppBar">
+        <item name="fabAlignmentMode">center</item>
+        <item name="navigationIcon">@drawable/ic_baseline_menu_24</item>
+    </style>
+
+    <style name="PodBottomAppBar.FabEnd" parent="PodBottomAppBar">
+        <item name="fabAlignmentMode">end</item>
+    </style>
+
+    <style name="PodFab" parent="Widget.Design.FloatingActionButton">
+        <item name="layout_anchor">@id/bottom_app_bar</item>
+        <item name="tint">@color/black</item>
+    </style>
+
+    <style name="PodFab.Plus">
+        <item name="srcCompat">@drawable/ic_baseline_add_24</item>
+    </style>
+
+    <style name="PodFab.Back">
+        <item name="srcCompat">@drawable/ic_baseline_arrow_back_24</item>
+    </style>
+</resources>

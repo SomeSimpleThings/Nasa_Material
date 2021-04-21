@@ -3,6 +3,7 @@ package com.somethingsimple.nasapod.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.somethingsimple.nasapod.R
+import com.somethingsimple.nasapod.ui.pod.PodFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

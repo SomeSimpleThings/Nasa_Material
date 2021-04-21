@@ -1,4 +1,4 @@
-package com.somethingsimple.nasapod.ui
+package com.somethingsimple.nasapod.ui.pod
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

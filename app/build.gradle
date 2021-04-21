@@ -43,6 +43,7 @@ android {
 
 dependencies {
 
+    implementation 'androidx.preference:preference:1.1.1'
     def retrofit_ver = "2.9.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -1,4 +1,4 @@
-package com.somethingsimple.nasapod.ui
+package com.somethingsimple.nasapod.ui.pod
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,8 @@ import com.somethingsimple.nasapod.R
 import com.somethingsimple.nasapod.WIKI_URL
 import com.somethingsimple.nasapod.data.PictureOfTheDayResponse
 import com.somethingsimple.nasapod.databinding.FragmentPodBinding
+import com.somethingsimple.nasapod.ui.MainActivity
+import com.somethingsimple.nasapod.ui.SettingsActivity
 
 class PodFragment : Fragment() {
 
@@ -67,8 +69,7 @@ class PodFragment : Fragment() {
         when (item.itemId) {
             R.id.app_bar_fav -> Toast.makeText(context, R.string.favourite, Toast.LENGTH_SHORT)
                 .show()
-            R.id.app_bar_search -> Toast.makeText(context, R.string.settings, Toast.LENGTH_SHORT)
-                .show()
+            R.id.app_bar_search -> startActivity(Intent(context, SettingsActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

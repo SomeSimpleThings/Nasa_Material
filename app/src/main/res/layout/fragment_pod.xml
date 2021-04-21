@@ -11,21 +11,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
+            style="@style/PodLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp">
+            android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/PodTextInputLayout.Wiki"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/search_wiki"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:endIconDrawable="@drawable/ic_wikipedia"
-                app:endIconMode="custom"
-                app:helperText="@string/wiki_helper_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -69,7 +63,6 @@
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:contentDescription="@string/photo_of_the_day_stub"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,13 +71,9 @@
 
             <TextView
                 android:id="@+id/bottom_sheet_description_header"
+                style="@style/PodTextView.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="#000"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_view"
@@ -92,10 +81,9 @@
 
             <TextView
                 android:id="@+id/bottom_sheet_description"
+                style="@style/PodTextView.ItalicText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
@@ -107,21 +95,15 @@
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
+        style="@style/PodBottomAppBar.FabCenter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:backgroundTint="@color/purple_500"
-        app:fabAlignmentMode="center"
-        app:menu="@menu/menu_pod_fragment"
-        app:navigationIcon="@drawable/ic_baseline_menu_24" />
+        app:menu="@menu/menu_pod_fragment" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        style="@style/PodFab.Plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple_200"
-        android:contentDescription="@string/fab_description"
-        app:layout_anchor="@id/bottom_app_bar"
-        app:srcCompat="@drawable/ic_baseline_add_24"
-        app:tint="#FFFFFF" />
+        android:contentDescription="@string/fab_description" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
