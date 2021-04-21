@@ -11,23 +11,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
-            style="@style/PodLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/PodLayout">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout"
                 style="@style/PodTextInputLayout.Wiki"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    style="@style/PodTextInputLayout" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -39,22 +34,19 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_yesterday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/PodChip"
                     android:layout_weight="3"
                     android:text="@string/yesterday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_random"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/PodChip"
                     android:layout_weight="3"
                     android:text="@string/random" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_today"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/PodChip"
                     android:layout_weight="3"
                     android:text="@string/today" />
             </LinearLayout>
@@ -72,8 +64,6 @@
             <TextView
                 android:id="@+id/bottom_sheet_description_header"
                 style="@style/PodTextView.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_view"
@@ -82,8 +72,6 @@
             <TextView
                 android:id="@+id/bottom_sheet_description"
                 style="@style/PodTextView.ItalicText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
@@ -96,14 +84,10 @@
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
         style="@style/PodBottomAppBar.FabCenter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:menu="@menu/menu_pod_fragment" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         style="@style/PodFab.Plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:contentDescription="@string/fab_description" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
