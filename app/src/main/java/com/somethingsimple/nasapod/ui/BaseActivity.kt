@@ -35,7 +35,7 @@ open class BaseActivity : AppCompatActivity() {
             recreate()
     }
 
-    private fun setAppTheme(currentTheme: String) {
+    protected fun setAppTheme(currentTheme: String) {
         when (currentTheme) {
             getString(R.string.default_theme) -> setTheme(R.style.Theme_NASAPOD)
             getString(R.string.grey_theme) -> setTheme(R.style.Theme_NASAPOD_Grey)

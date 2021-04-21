@@ -60,9 +60,15 @@ class SettingsActivity : BaseActivity() {
                 ?.apply {
                     onPreferenceChangeListener =
                         Preference.OnPreferenceChangeListener { preference: Preference?, newValue: Any ->
-                            sharedPreferences.edit()
-                                .putString(getString(R.string.pref_theme), newValue as String)
-                                .apply()
+                            (newValue as String).let {
+                                sharedPreferences.edit()
+                                    .putString(getString(R.string.pref_theme), it)
+                                    .apply()
+                                (activity as SettingsActivity).apply {
+                                    setAppTheme(it)
+                                    recreate()
+                                }
+                            }
                             true
                         }
                 }
