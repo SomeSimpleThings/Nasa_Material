@@ -20,5 +20,6 @@
     <string name="default_theme">default</string>
     <string name="grey_theme">grey</string>
     <string name="solarized_theme">solarized</string>
+    <string name="explore">Explore</string>
 
 </resources>

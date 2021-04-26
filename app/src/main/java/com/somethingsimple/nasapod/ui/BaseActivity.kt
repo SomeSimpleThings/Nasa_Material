@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.somethingsimple.nasapod.R
+import com.somethingsimple.nasapod.ui.common.setGlobalNightMode
 
 open class BaseActivity : AppCompatActivity() {
     private lateinit var currentTheme: String
@@ -35,7 +36,7 @@ open class BaseActivity : AppCompatActivity() {
             recreate()
     }
 
-    protected fun setAppTheme(currentTheme: String) {
+    fun setAppTheme(currentTheme: String) {
         when (currentTheme) {
             getString(R.string.default_theme) -> setTheme(R.style.Theme_NASAPOD)
             getString(R.string.grey_theme) -> setTheme(R.style.Theme_NASAPOD_Grey)

@@ -22,15 +22,10 @@ const val API_QUERYPARAM_DATE = "date"
 interface PictureOfTheDayAPI {
 
     @GET(API_APOD)
-    fun getPictureOfTheDay(
-        @Query(API_QUERYPARAM_APIKEY) apiKey: String,
-        @Query(API_QUERYPARAM_THUMBS) thumbs: Boolean = true
-    ): Call<PictureOfDay>
-
-    @GET(API_APOD)
     fun getRandomPods(
         @Query(API_QUERYPARAM_APIKEY) apiKey: String,
         @Query(API_QUERYPARAM_COUNT) count: Int = 1,
+        @Query(API_QUERYPARAM_THUMBS) thumbs: Boolean = true
     ): Call<List<PictureOfDay>>
 
     @GET(API_APOD)

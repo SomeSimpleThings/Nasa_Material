@@ -1,4 +1,4 @@
-package com.somethingsimple.nasapod.ui
+package com.somethingsimple.nasapod.ui.common
 
 import androidx.appcompat.app.AppCompatDelegate
 

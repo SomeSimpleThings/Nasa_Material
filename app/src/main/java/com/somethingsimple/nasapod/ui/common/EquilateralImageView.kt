@@ -1,4 +1,4 @@
-package com.somethingsimple.nasapod.ui
+package com.somethingsimple.nasapod.ui.common
 
 import android.content.Context
 import android.util.AttributeSet

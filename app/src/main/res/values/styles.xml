@@ -60,8 +60,13 @@
         <item name="fabAlignmentMode">end</item>
     </style>
 
+    <style name="PodBottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
     <style name="PodFab" parent="Widget.Design.FloatingActionButton">
-        <item name="layout_anchor">@id/bottom_app_bar</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
