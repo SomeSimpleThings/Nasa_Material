@@ -48,9 +48,35 @@ class PodFragment : Fragment() {
                 data = "$WIKI_URL${binding.inputEditText.text.toString()}".toUri()
             })
         }
-        binding.chipRandom.setOnClickListener { viewModel.getRandom() }
-        binding.chipYesterday.setOnClickListener { viewModel.getYesterday() }
-        binding.chipToday.setOnClickListener { viewModel.sendServerRequest() }
+        setupChipsBehavior()
+
+    }
+
+    private fun setupChipsBehavior() {
+//        binding.chipGroup.apply {
+//            setOnCheckedChangeListener { chipGroup: ChipGroup, i: Int ->
+//                when (i) {
+//                    binding.chipRandom.id -> viewModel.getRandom()
+//                    binding.chipYesterday.id -> viewModel.getYesterday()
+//                    binding.chipToday.id -> viewModel.getToday()
+//                }
+//            }
+//        }
+        binding.chipRandom.setOnClickListener {
+            binding.chipYesterday.isChecked = false
+            binding.chipToday.isChecked = false
+            viewModel.getRandom()
+        }
+        binding.chipYesterday.setOnClickListener {
+            binding.chipRandom.isChecked = false
+            binding.chipToday.isChecked = false
+            viewModel.getYesterday()
+        }
+        binding.chipToday.setOnClickListener {
+            binding.chipRandom.isChecked = false
+            binding.chipYesterday.isChecked = false
+            viewModel.getToday()
+        }
     }
 
     private fun renderData(data: PictureOfTheDayResponse) {
@@ -58,14 +84,7 @@ class PodFragment : Fragment() {
             is PictureOfTheDayResponse.Success -> {
                 data.serverResponse.let {
                     val url = it.url
-                    if (url.isNullOrEmpty()) {
-                        //Отобразите ошибку
-                        //showError("Сообщение, что ссылка пустая")
-                    } else {
-                        //Отобразите фото
-                        //showSuccess()
-                        //Coil в работе: достаточно вызвать у нашего ImageView
-                        //нужную extension-функцию и передать ссылку и заглушки для placeholder
+                    if (!url.isNullOrEmpty()) {
                         binding.imageView.load(url) {
                             lifecycle(this@PodFragment)
                             error(R.drawable.ic_load_error_24)

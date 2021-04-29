@@ -16,7 +16,8 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        replaceFragment(PodFragment.newInstance())
+        if (savedInstanceState == null)
+            replaceFragment(PodFragment.newInstance())
         setupBottomNavView()
     }
 
@@ -52,6 +53,6 @@ class MainActivity : BaseActivity() {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.container, fragment)
-            .commitAllowingStateLoss()
+            .commit()
     }
 }

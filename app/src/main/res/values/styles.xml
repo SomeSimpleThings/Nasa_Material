@@ -2,20 +2,28 @@
 <resources>
 
     <style name="PodLayout">
-        <item name="android:padding">@dimen/default_layout_padding</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="PodLayout.Padding" parent="PodLayout">
+        <item name="android:padding">@dimen/default_layout_padding</item>
+    </style>
+
+    <style name="PodLayout.CollapsingToolbar" parent="PodLayout">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="contentScrim">?attr/imageContentScrim</item>
+        <item name="layout_scrollFlags">scroll|snap</item>
+    </style>
+
+    <style name="PodLayout.AppBarLayout" parent="PodLayout">
+        <item name="android:layout_height">@dimen/app_bar_dimension</item>
+        <item name="android:theme">@style/Theme.NASAPOD</item>
     </style>
 
     <style name="PodTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="PodChip">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="PodTextInputLayout.Wiki">
@@ -42,6 +50,52 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:layout_marginTop">@dimen/title_margin_top</item>
+    </style>
+
+    <style name="PodChipGroup" parent="Widget.MaterialComponents.ChipGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="singleSelection">true</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="PodChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="chipIconVisible">true</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="PodChip.Yesterday" parent="PodChip">
+        <item name="android:text">@string/yesterday</item>
+        <item name="chipIcon">@drawable/ic_baseline_av_timer_24</item>
+    </style>
+
+    <style name="PodChip.Random" parent="PodChip">
+        <item name="android:text">@string/random</item>
+        <item name="chipIcon">@drawable/ic_baseline_cameraswitch_24</item>
+    </style>
+
+    <style name="PodChip.Today" parent="PodChip">
+        <item name="android:text">@string/today</item>
+        <item name="chipIcon">@drawable/ic_baseline_access_time_24</item>
+    </style>
+
+    <style name="PodClickableIcons">
+        <item name="android:layout_width">@dimen/icons_in_actions_dim</item>
+        <item name="android:layout_height">@dimen/icons_in_actions_dim</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="PodClickableIcons.Favourite" parent="PodClickableIcons">
+        <item name="android:src">@drawable/fav_click_selector</item>
+        <item name="android:contentDescription">@string/tap_to_like</item>
+    </style>
+
+    <style name="PodClickableIcons.Wiki" parent="PodClickableIcons">
+        <item name="android:src">@drawable/ic_wikipedia</item>
+        <item name="android:contentDescription">@string/tap_to_search_in_wiki</item>
     </style>
 
     <style name="PodBottomAppBar" parent="Widget.MaterialComponents.BottomAppBar">

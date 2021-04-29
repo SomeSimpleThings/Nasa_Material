@@ -12,11 +12,11 @@ class PodViewModel(
 ) : ViewModel() {
 
     fun getData(): LiveData<PictureOfTheDayResponse> {
-        sendServerRequest()
+        getToday()
         return liveDataForViewToObserve
     }
 
-    fun sendServerRequest() {
+    fun getToday() {
         liveDataForViewToObserve.value = PictureOfTheDayResponse.Loading(null)
         podRepo.getToday {
             liveDataForViewToObserve.value = it
