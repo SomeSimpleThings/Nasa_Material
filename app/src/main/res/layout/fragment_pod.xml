@@ -29,14 +29,14 @@
         style="@style/PodLayout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.motion.widget.MotionLayout
             android:id="@+id/main"
-            style="@style/PodLayout.Padding">
+            style="@style/PodLayout.Padding"
+            app:layoutDescription="@xml/fragment_pod_xml_main_scene">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout"
                 style="@style/PodTextInputLayout.Wiki"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -46,24 +46,13 @@
                     style="@style/PodTextInputLayout" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/fav_con"
-                style="@style/PodClickableIcons.Favourite"
-                app:layout_constraintEnd_toStartOf="@+id/wiki_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/wiki_icon"
-                style="@style/PodClickableIcons.Wiki"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="input_layout,wiki_icon" />
+                app:constraint_referenced_ids="input_layout" />
 
             <!--            <com.google.android.material.chip.ChipGroup-->
             <!--                android:id="@+id/chip_group"-->
@@ -104,6 +93,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/chip_random"
                 tools:text="Description title" />
 
+            <ImageView
+                android:id="@+id/fav_icon"
+                style="@style/PodClickableIcons.Favourite"
+                android:contentDescription="TODO" />
+
             <TextView
                 android:id="@+id/bottom_sheet_description"
                 style="@style/PodTextView.ItalicText"
@@ -111,7 +105,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
                 tools:text="This is description text." />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
 
     </androidx.core.widget.NestedScrollView>
 
