@@ -13,7 +13,7 @@
         <KeyFrameSet>
             <KeyPosition
                 motion:framePosition="20"
-                motion:keyPositionType="parentRelative"
+                motion:keyPositionType="pathRelative"
                 motion:motionTarget="@+id/fav_icon"
                 motion:percentX="1.2" />
             <KeyAttribute
@@ -50,7 +50,7 @@
             android:id="@+id/bottom_sheet_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header" />
     </ConstraintSet>
 

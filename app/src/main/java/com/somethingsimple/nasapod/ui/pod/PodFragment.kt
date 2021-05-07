@@ -1,7 +1,9 @@
 package com.somethingsimple.nasapod.ui.pod
 
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.transition.*
 import android.view.*
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -12,10 +14,12 @@ import com.somethingsimple.nasapod.WIKI_URL
 import com.somethingsimple.nasapod.data.PictureOfTheDayResponse
 import com.somethingsimple.nasapod.databinding.FragmentPodBinding
 
+
 class PodFragment : Fragment() {
 
     private val viewModel: PodViewModel by viewModels()
     private var _binding: FragmentPodBinding? = null
+    private var liked = false
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -77,9 +81,22 @@ class PodFragment : Fragment() {
             binding.chipYesterday.isChecked = false
             viewModel.getToday()
         }
+        binding.favIcon.apply {
+            setOnClickListener {
+                if (liked) setBackgroundResource(R.drawable.fav_click_like)
+                else setBackgroundResource(R.drawable.fav_click_dislike)
+                liked = !liked
+                val animation: AnimationDrawable = background as AnimationDrawable
+                animation.start()
+            }
+        }
     }
 
     private fun renderData(data: PictureOfTheDayResponse) {
+        var visible = false
+        setTextVisibility(visible)
+        binding.imageView.animate().alpha(0.1f)
+            .setDuration(300)
         when (data) {
             is PictureOfTheDayResponse.Success -> {
                 data.serverResponse.let {
@@ -90,6 +107,10 @@ class PodFragment : Fragment() {
                             error(R.drawable.ic_load_error_24)
                             placeholder(R.drawable.ic_baseline_image_not_supported_24)
                         }
+                        binding.imageView.animate().alpha(1f)
+                            .setDuration(300)
+                        visible = !visible;
+                        setTextVisibility(visible)
                         binding.bottomSheetDescriptionHeader.text = it.title
                         binding.bottomSheetDescription.text = it.explanation
                     }
@@ -104,5 +125,15 @@ class PodFragment : Fragment() {
                 binding.imageView.setImageResource(R.drawable.ic_load_error_24)
             }
         }
+    }
+
+    private fun setTextVisibility(visible: Boolean) {
+        TransitionManager.beginDelayedTransition(
+            binding.mainMotionContainer,
+            Slide(Gravity.BOTTOM)
+        )
+        binding.bottomSheetDescriptionHeader.setVisibility(if (visible) View.VISIBLE else View.GONE)
+        binding.favIcon.setVisibility(if (visible) View.VISIBLE else View.GONE)
+        binding.bottomSheetDescription.setVisibility(if (visible) View.VISIBLE else View.GONE)
     }
 }

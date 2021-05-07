@@ -89,7 +89,7 @@
     </style>
 
     <style name="PodClickableIcons.Favourite" parent="PodClickableIcons">
-        <item name="android:src">@drawable/fav_click_selector</item>
+        <item name="android:src">@drawable/fav_click_like</item>
         <item name="android:contentDescription">@string/tap_to_like</item>
     </style>
 
