@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="primaryColor">#0d47a1</color>
+    <color name="primaryLightColor">#5472d3</color>
+    <color name="primaryDarkColor">#002171</color>
+    <color name="secondaryColor">#ffc107</color>
+    <color name="secondaryLightColor">#fff350</color>
+    <color name="secondaryDarkColor">#c79100</color>
+    <color name="primaryTextColor">#fafafa</color>
+    <color name="secondaryTextColor">#000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="greyPrimaryColor">#37474f</color>
+    <color name="greyPrimaryLightColor">#62727b</color>
+    <color name="greyPrimaryDarkColor">#102027</color>
+    <color name="greySecondaryColor">#607d8b</color>
+    <color name="greySecondaryLightColor">#8eacbb</color>
+    <color name="greySecondaryDarkColor">#34515e</color>
+    <color name="greyPrimaryTextColor">#ffffff</color>
+    <color name="greySecondaryTextColor">#000000</color>
+
+    <color name="solarizedPrimaryColor">#673AB7</color>
+    <color name="solarizedPrimaryLightColor">#7C5BB6</color>
+    <color name="solarizedPrimaryDarkColor">#102027</color>
+    <color name="solarizedSecondaryColor">#6a1b9a</color>
+    <color name="solarizedSecondaryLightColor">#9c4dcc</color>
+    <color name="solarizedSecondaryDarkColor">#38006b</color>
+    <color name="solarizedPrimaryTextColor">#ff9800</color>
+    <color name="solarizedSecondaryTextColor">#ffc107</color>
+
 </resources>

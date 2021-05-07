@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/PodLayout">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/main_appbar"
+        style="@style/PodLayout.AppBarLayout">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/main_collapsing"
+            style="@style/PodLayout.CollapsingToolbar">
+
+            <com.somethingsimple.nasapod.ui.common.EquilateralImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/photo_of_the_day_stub"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:srcCompat="@drawable/ic_load_error_24" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/PodLayout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/main"
+            style="@style/PodLayout.Padding"
+            app:layoutDescription="@xml/fragment_pod_xml_main_scene">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout"
+                style="@style/PodTextInputLayout.Wiki"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_edit_text"
+                    style="@style/PodTextInputLayout" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="input_layout" />
+
+            <!--            <com.google.android.material.chip.ChipGroup-->
+            <!--                android:id="@+id/chip_group"-->
+            <!--                style="@style/PodChipGroup"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/barrier"-->
+            <!--                app:singleSelection="true">-->
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_yesterday"
+                style="@style/PodChip.Yesterday"
+                app:layout_constraintEnd_toStartOf="@+id/chip_random"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_random"
+                style="@style/PodChip.Random"
+                app:layout_constraintEnd_toStartOf="@+id/chip_today"
+                app:layout_constraintStart_toEndOf="@+id/chip_yesterday"
+                app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_today"
+                style="@style/PodChip.Today"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/chip_random"
+                app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+            <!--            </com.google.android.material.chip.ChipGroup>-->
+
+
+            <TextView
+                android:id="@+id/bottom_sheet_description_header"
+                style="@style/PodTextView.Title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chip_random"
+                tools:text="Description title" />
+
+            <ImageView
+                android:id="@+id/fav_icon"
+                style="@style/PodClickableIcons.Favourite"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:id="@+id/bottom_sheet_description"
+                style="@style/PodTextView.ItalicText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
+                tools:text="This is description text." />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
