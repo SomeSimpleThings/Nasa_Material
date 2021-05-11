@@ -5,4 +5,5 @@
     <dimen name="title_text_size">20sp</dimen>
     <dimen name="app_bar_dimension">300dp</dimen>
     <dimen name="icons_in_actions_dim">32dp</dimen>
+    <dimen name="cardview_margin">10dp</dimen>
 </resources>

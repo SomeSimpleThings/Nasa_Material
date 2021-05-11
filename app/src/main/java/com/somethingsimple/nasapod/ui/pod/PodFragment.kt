@@ -1,7 +1,6 @@
 package com.somethingsimple.nasapod.ui.pod
 
 import android.content.Intent
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.transition.*
 import android.view.*
@@ -11,7 +10,8 @@ import androidx.fragment.app.viewModels
 import coil.api.load
 import com.somethingsimple.nasapod.R
 import com.somethingsimple.nasapod.WIKI_URL
-import com.somethingsimple.nasapod.data.PictureOfTheDayResponse
+import com.somethingsimple.nasapod.data.PictureOfDay
+import com.somethingsimple.nasapod.data.remote.PictureOfTheDayResponse
 import com.somethingsimple.nasapod.databinding.FragmentPodBinding
 
 
@@ -20,6 +20,7 @@ class PodFragment : Fragment() {
     private val viewModel: PodViewModel by viewModels()
     private var _binding: FragmentPodBinding? = null
     private var liked = false
+    private var currentPod: PictureOfDay? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -83,11 +84,9 @@ class PodFragment : Fragment() {
         }
         binding.favIcon.apply {
             setOnClickListener {
+                currentPod?.also { viewModel.setFavourite(it, liked) }
                 if (liked) setBackgroundResource(R.drawable.fav_click_like)
                 else setBackgroundResource(R.drawable.fav_click_dislike)
-                liked = !liked
-                val animation: AnimationDrawable = background as AnimationDrawable
-                animation.start()
             }
         }
     }
@@ -100,6 +99,7 @@ class PodFragment : Fragment() {
         when (data) {
             is PictureOfTheDayResponse.Success -> {
                 data.serverResponse.let {
+                    currentPod = it
                     val url = it.url
                     if (!url.isNullOrEmpty()) {
                         binding.imageView.load(url) {
@@ -111,7 +111,7 @@ class PodFragment : Fragment() {
                             .setDuration(300)
                         visible = !visible;
                         setTextVisibility(visible)
-                        binding.bottomSheetDescriptionHeader.text = it.title
+                        binding.descriptionHeader.text = it.title
                         binding.bottomSheetDescription.text = it.explanation
                     }
                 }
@@ -132,7 +132,7 @@ class PodFragment : Fragment() {
             binding.mainMotionContainer,
             Slide(Gravity.BOTTOM)
         )
-        binding.bottomSheetDescriptionHeader.setVisibility(if (visible) View.VISIBLE else View.GONE)
+        binding.descriptionHeader.setVisibility(if (visible) View.VISIBLE else View.GONE)
         binding.favIcon.setVisibility(if (visible) View.VISIBLE else View.GONE)
         binding.bottomSheetDescription.setVisibility(if (visible) View.VISIBLE else View.GONE)
     }

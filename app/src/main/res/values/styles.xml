@@ -6,8 +6,17 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="PodLayout.CardView">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="PodLayout.Padding" parent="PodLayout">
         <item name="android:padding">@dimen/default_layout_padding</item>
+    </style>
+
+    <style name="PodLayout.PaddingLeftRight" parent="PodLayout">
+        <item name="android:paddingStart">@dimen/default_layout_padding</item>
+        <item name="android:paddingEnd">@dimen/default_layout_padding</item>
     </style>
 
     <style name="PodLayout.CollapsingToolbar" parent="PodLayout">

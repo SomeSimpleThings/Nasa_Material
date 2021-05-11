@@ -86,7 +86,7 @@
 
 
             <TextView
-                android:id="@+id/bottom_sheet_description_header"
+                android:id="@+id/description_header"
                 style="@style/PodTextView.Title"
                 android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/fav_icon"
@@ -108,7 +108,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
+                app:layout_constraintTop_toBottomOf="@+id/description_header"
                 tools:text="This is description text." />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
