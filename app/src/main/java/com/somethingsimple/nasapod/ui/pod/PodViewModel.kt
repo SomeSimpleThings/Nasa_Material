@@ -39,11 +39,9 @@ class PodViewModel(
         }
     }
 
-    fun setFavourite(pictureOfDay: PictureOfDay, liked: Boolean) {
-        podRepo.addToFavourites(pictureOfDay)
-    }
-
-    fun unsetFavourite(pictureOfDay: PictureOfDay) {
-        podRepo.deleteFromFavourites(pictureOfDay)
+    fun setFavourite(pictureOfDay: PictureOfDay) {
+        if (pictureOfDay.liked)
+            podRepo.addToFavourites(pictureOfDay)
+        else podRepo.deleteFromFavourites(pictureOfDay)
     }
 }

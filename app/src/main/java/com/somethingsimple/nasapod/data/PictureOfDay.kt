@@ -28,5 +28,6 @@ data class PictureOfDay(
     val title: String,
     @ColumnInfo
     @SerializedName("url")
-    val url: String?
+    val url: String?,
+    var liked: Boolean = false
 )

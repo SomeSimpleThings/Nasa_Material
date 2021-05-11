@@ -102,6 +102,11 @@
         <item name="android:contentDescription">@string/tap_to_like</item>
     </style>
 
+    <style name="PodClickableIcons.Favourite.Liked" parent="PodClickableIcons">
+        <item name="android:src">@drawable/fav_click_dislike</item>
+        <item name="android:contentDescription">@string/tap_to_like</item>
+    </style>
+
     <style name="PodClickableIcons.Wiki" parent="PodClickableIcons">
         <item name="android:src">@drawable/ic_wikipedia</item>
         <item name="android:contentDescription">@string/tap_to_search_in_wiki</item>

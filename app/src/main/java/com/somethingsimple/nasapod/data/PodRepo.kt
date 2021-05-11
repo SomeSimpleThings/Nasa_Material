@@ -55,7 +55,15 @@ class PodRepo(
                     response: Response<PictureOfDay>
                 ) {
                     if (response.isSuccessful && response.body() != null) {
-                        completion(PictureOfTheDayResponse.Success(response.body()!!))
+                        response.body()!!.apply {
+                            val cached = url?.let { podDao.getByUrl(it) }
+                            if (cached != null) {
+                                cached.liked = true
+                                completion(PictureOfTheDayResponse.Success(cached))
+                            } else
+                                completion(PictureOfTheDayResponse.Success(this))
+                        }
+
                     } else {
                         val message = response.message()
                         if (message.isNullOrEmpty()) {

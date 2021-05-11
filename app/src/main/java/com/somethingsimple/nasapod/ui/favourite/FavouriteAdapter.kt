@@ -44,7 +44,6 @@ class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.FavouriteItemView
                 placeholder(R.drawable.ic_baseline_image_not_supported_24)
             }
             binding.descriptionHeader.text = item.title
-            binding.bottomSheetDescription.text = item.explanation
         }
 
     }

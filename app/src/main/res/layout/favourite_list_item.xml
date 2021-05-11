@@ -21,23 +21,17 @@
         <TextView
             android:id="@+id/description_header"
             style="@style/PodTextView.Title"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_view"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Description title" />
 
         <ImageView
             android:id="@+id/fav_icon"
-            style="@style/PodClickableIcons.Favourite"
+            style="@style/PodClickableIcons.Favourite.Liked"
             android:contentDescription="TODO"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/bottom_sheet_description"
-            style="@style/PodTextView.ItalicText"
-            app:layout_constraintStart_toEndOf="@+id/image_view"
-            app:layout_constraintTop_toBottomOf="@+id/description_header"
-            tools:text="This is description text." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

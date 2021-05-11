@@ -11,6 +11,9 @@ interface PodDao {
     @Query("SELECT * FROM PictureOfDay")
     fun getAll(): List<PictureOfDay>
 
+    @Query("SELECT * FROM PictureOfDay WHERE url = :url")
+    fun getByUrl(url: String): PictureOfDay?
+
     @Insert
     fun insertAll(vararg pictureOfDay: PictureOfDay)
 

@@ -19,7 +19,6 @@ class PodFragment : Fragment() {
 
     private val viewModel: PodViewModel by viewModels()
     private var _binding: FragmentPodBinding? = null
-    private var liked = false
     private var currentPod: PictureOfDay? = null
 
     // This property is only valid between onCreateView and
@@ -58,15 +57,6 @@ class PodFragment : Fragment() {
     }
 
     private fun setupChipsBehavior() {
-//        binding.chipGroup.apply {
-//            setOnCheckedChangeListener { chipGroup: ChipGroup, i: Int ->
-//                when (i) {
-//                    binding.chipRandom.id -> viewModel.getRandom()
-//                    binding.chipYesterday.id -> viewModel.getYesterday()
-//                    binding.chipToday.id -> viewModel.getToday()
-//                }
-//            }
-//        }
         binding.chipRandom.setOnClickListener {
             binding.chipYesterday.isChecked = false
             binding.chipToday.isChecked = false
@@ -84,9 +74,14 @@ class PodFragment : Fragment() {
         }
         binding.favIcon.apply {
             setOnClickListener {
-                currentPod?.also { viewModel.setFavourite(it, liked) }
-                if (liked) setBackgroundResource(R.drawable.fav_click_like)
-                else setBackgroundResource(R.drawable.fav_click_dislike)
+                currentPod?.also {
+                    it.liked = !it.liked
+                    viewModel.setFavourite(it)
+                    setBackgroundResource(
+                        if (it.liked) R.drawable.fav_click_dislike
+                        else R.drawable.fav_click_like
+                    )
+                }
             }
         }
     }
@@ -109,10 +104,14 @@ class PodFragment : Fragment() {
                         }
                         binding.imageView.animate().alpha(1f)
                             .setDuration(300)
-                        visible = !visible;
+                        visible = !visible
                         setTextVisibility(visible)
                         binding.descriptionHeader.text = it.title
                         binding.bottomSheetDescription.text = it.explanation
+                        binding.favIcon.setBackgroundResource(
+                            if (it.liked) R.drawable.fav_click_dislike
+                            else R.drawable.fav_click_like
+                        )
                     }
                 }
 
