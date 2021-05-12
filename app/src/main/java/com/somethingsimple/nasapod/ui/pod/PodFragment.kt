@@ -1,9 +1,14 @@
 package com.somethingsimple.nasapod.ui.pod
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.transition.*
 import android.view.*
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -81,6 +86,14 @@ class PodFragment : Fragment() {
                         if (it.liked) R.drawable.fav_click_dislike
                         else R.drawable.fav_click_like
                     )
+                    val spannableDesc = SpannableString(binding.descriptionHeader.text)
+                    val color = if (it.liked) Color.DKGRAY else Color.LTGRAY
+                    spannableDesc.setSpan(
+                        ForegroundColorSpan(color),
+                        0, spannableDesc.length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    binding.descriptionHeader.setText(spannableDesc, TextView.BufferType.SPANNABLE)
                 }
             }
         }

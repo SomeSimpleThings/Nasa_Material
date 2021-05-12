@@ -52,7 +52,7 @@
     </style>
 
     <style name="PodTextView.ItalicText">
-        <item name="android:textStyle">italic</item>
+        <item name="android:fontFamily">@font/artifika</item>
     </style>
 
     <style name="PodTextView.Title">
