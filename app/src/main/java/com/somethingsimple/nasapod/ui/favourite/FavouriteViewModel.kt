@@ -14,4 +14,14 @@ class FavouriteViewModel(
         favouritesLiveData.value = podRepo.getFavourites()
         return favouritesLiveData
     }
+
+    fun removeFromFavourites(pictureOfDay: PictureOfDay) {
+        podRepo.deleteFromFavourites(pictureOfDay)
+    }
+
+    fun setFavourite(pictureOfDay: PictureOfDay) {
+        if (pictureOfDay.liked)
+            podRepo.addToFavourites(pictureOfDay)
+        else podRepo.deleteFromFavourites(pictureOfDay)
+    }
 }

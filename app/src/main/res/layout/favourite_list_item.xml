@@ -20,11 +20,12 @@
 
         <TextView
             android:id="@+id/description_header"
-            style="@style/PodTextView.Title"
+            style="@style/PodTextView.Title.List"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_view"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Description title" />
+            tools:text="Description title " />
 
         <ImageView
             android:id="@+id/fav_icon"

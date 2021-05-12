@@ -16,7 +16,7 @@ data class PictureOfDay(
     val explanation: String,
     @ColumnInfo
     @SerializedName("hdurl")
-    val hdurl: String,
+    val hdurl: String?,
     @ColumnInfo
     @SerializedName("media_type")
     val mediaType: String,
