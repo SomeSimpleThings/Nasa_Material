@@ -1,6 +1,10 @@
 package com.somethingsimple.nasapod.data
 
 import com.somethingsimple.nasapod.BuildConfig
+import com.somethingsimple.nasapod.NasaPodApplication
+import com.somethingsimple.nasapod.data.local.PodDao
+import com.somethingsimple.nasapod.data.remote.PODRetrofitImpl
+import com.somethingsimple.nasapod.data.remote.PictureOfTheDayResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -9,11 +13,24 @@ import java.util.*
 
 class PodRepo(
     private val retrofitImpl: PODRetrofitImpl = PODRetrofitImpl(),
+    private val podDao: PodDao = NasaPodApplication.getPodDao(),
     private val simpleDateFormat: SimpleDateFormat = SimpleDateFormat(
         "yyyy-MM-dd",
         Locale.getDefault()
     )
 ) {
+
+    fun addToFavourites(pictureOfDay: PictureOfDay) {
+        podDao.insertAll(pictureOfDay)
+    }
+
+    fun deleteFromFavourites(pictureOfDay: PictureOfDay) {
+        podDao.delete(pictureOfDay)
+    }
+
+    fun getFavourites(): List<PictureOfDay> {
+        return podDao.getAll()
+    }
 
     fun getToday(completion: (PictureOfTheDayResponse?) -> Unit) {
         val calendar = Calendar.getInstance()
@@ -38,7 +55,15 @@ class PodRepo(
                     response: Response<PictureOfDay>
                 ) {
                     if (response.isSuccessful && response.body() != null) {
-                        completion(PictureOfTheDayResponse.Success(response.body()!!))
+                        response.body()!!.apply {
+                            val cached = url?.let { podDao.getByUrl(it) }
+                            if (cached != null) {
+                                cached.liked = true
+                                completion(PictureOfTheDayResponse.Success(cached))
+                            } else
+                                completion(PictureOfTheDayResponse.Success(this))
+                        }
+
                     } else {
                         val message = response.message()
                         if (message.isNullOrEmpty()) {

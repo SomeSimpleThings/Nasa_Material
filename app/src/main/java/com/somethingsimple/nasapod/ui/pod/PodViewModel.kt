@@ -3,8 +3,9 @@ package com.somethingsimple.nasapod.ui.pod
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.somethingsimple.nasapod.data.PictureOfTheDayResponse
+import com.somethingsimple.nasapod.data.PictureOfDay
 import com.somethingsimple.nasapod.data.PodRepo
+import com.somethingsimple.nasapod.data.remote.PictureOfTheDayResponse
 
 class PodViewModel(
     private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayResponse> = MutableLiveData(),
@@ -36,5 +37,11 @@ class PodViewModel(
         podRepo.getYesterday {
             liveDataForViewToObserve.value = it
         }
+    }
+
+    fun setFavourite(pictureOfDay: PictureOfDay) {
+        if (pictureOfDay.liked)
+            podRepo.addToFavourites(pictureOfDay)
+        else podRepo.deleteFromFavourites(pictureOfDay)
     }
 }

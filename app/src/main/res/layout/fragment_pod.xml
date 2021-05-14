@@ -29,10 +29,10 @@
         style="@style/PodLayout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/main"
-            style="@style/PodLayout.Padding"
-            app:layoutDescription="@xml/fragment_pod_xml_main_scene">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_motion_container"
+            style="@style/PodLayout.Padding">
+            <!--            app:layoutDescription="@xml/fragment_pod_xml_main_scene"-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout"
@@ -86,9 +86,10 @@
 
 
             <TextView
-                android:id="@+id/bottom_sheet_description_header"
+                android:id="@+id/description_header"
                 style="@style/PodTextView.Title"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/fav_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chip_random"
                 tools:text="Description title" />
@@ -96,16 +97,20 @@
             <ImageView
                 android:id="@+id/fav_icon"
                 style="@style/PodClickableIcons.Favourite"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chip_today" />
 
             <TextView
                 android:id="@+id/bottom_sheet_description"
                 style="@style/PodTextView.ItalicText"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
+                app:layout_constraintTop_toBottomOf="@+id/description_header"
                 tools:text="This is description text." />
-        </androidx.constraintlayout.motion.widget.MotionLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 

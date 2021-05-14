@@ -1,21 +1,30 @@
 package com.somethingsimple.nasapod.ui.pod
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.transition.*
 import android.view.*
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.api.load
 import com.somethingsimple.nasapod.R
 import com.somethingsimple.nasapod.WIKI_URL
-import com.somethingsimple.nasapod.data.PictureOfTheDayResponse
+import com.somethingsimple.nasapod.data.PictureOfDay
+import com.somethingsimple.nasapod.data.remote.PictureOfTheDayResponse
 import com.somethingsimple.nasapod.databinding.FragmentPodBinding
+
 
 class PodFragment : Fragment() {
 
     private val viewModel: PodViewModel by viewModels()
     private var _binding: FragmentPodBinding? = null
+    private var currentPod: PictureOfDay? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -53,15 +62,6 @@ class PodFragment : Fragment() {
     }
 
     private fun setupChipsBehavior() {
-//        binding.chipGroup.apply {
-//            setOnCheckedChangeListener { chipGroup: ChipGroup, i: Int ->
-//                when (i) {
-//                    binding.chipRandom.id -> viewModel.getRandom()
-//                    binding.chipYesterday.id -> viewModel.getYesterday()
-//                    binding.chipToday.id -> viewModel.getToday()
-//                }
-//            }
-//        }
         binding.chipRandom.setOnClickListener {
             binding.chipYesterday.isChecked = false
             binding.chipToday.isChecked = false
@@ -77,12 +77,37 @@ class PodFragment : Fragment() {
             binding.chipYesterday.isChecked = false
             viewModel.getToday()
         }
+        binding.favIcon.apply {
+            setOnClickListener {
+                currentPod?.also {
+                    it.liked = !it.liked
+                    viewModel.setFavourite(it)
+                    setBackgroundResource(
+                        if (it.liked) R.drawable.fav_click_dislike
+                        else R.drawable.fav_click_like
+                    )
+                    val spannableDesc = SpannableString(binding.descriptionHeader.text)
+                    val color = if (it.liked) Color.DKGRAY else Color.LTGRAY
+                    spannableDesc.setSpan(
+                        ForegroundColorSpan(color),
+                        0, spannableDesc.length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    binding.descriptionHeader.setText(spannableDesc, TextView.BufferType.SPANNABLE)
+                }
+            }
+        }
     }
 
     private fun renderData(data: PictureOfTheDayResponse) {
+        var visible = false
+        setTextVisibility(visible)
+        binding.imageView.animate().alpha(0.1f)
+            .setDuration(300)
         when (data) {
             is PictureOfTheDayResponse.Success -> {
                 data.serverResponse.let {
+                    currentPod = it
                     val url = it.url
                     if (!url.isNullOrEmpty()) {
                         binding.imageView.load(url) {
@@ -90,8 +115,16 @@ class PodFragment : Fragment() {
                             error(R.drawable.ic_load_error_24)
                             placeholder(R.drawable.ic_baseline_image_not_supported_24)
                         }
-                        binding.bottomSheetDescriptionHeader.text = it.title
+                        binding.imageView.animate().alpha(1f)
+                            .setDuration(300)
+                        visible = !visible
+                        setTextVisibility(visible)
+                        binding.descriptionHeader.text = it.title
                         binding.bottomSheetDescription.text = it.explanation
+                        binding.favIcon.setBackgroundResource(
+                            if (it.liked) R.drawable.fav_click_dislike
+                            else R.drawable.fav_click_like
+                        )
                     }
                 }
 
@@ -104,5 +137,15 @@ class PodFragment : Fragment() {
                 binding.imageView.setImageResource(R.drawable.ic_load_error_24)
             }
         }
+    }
+
+    private fun setTextVisibility(visible: Boolean) {
+        TransitionManager.beginDelayedTransition(
+            binding.mainMotionContainer,
+            Slide(Gravity.BOTTOM)
+        )
+        binding.descriptionHeader.setVisibility(if (visible) View.VISIBLE else View.GONE)
+        binding.favIcon.setVisibility(if (visible) View.VISIBLE else View.GONE)
+        binding.bottomSheetDescription.setVisibility(if (visible) View.VISIBLE else View.GONE)
     }
 }

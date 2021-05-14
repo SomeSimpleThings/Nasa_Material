@@ -6,8 +6,17 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="PodLayout.CardView">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="PodLayout.Padding" parent="PodLayout">
         <item name="android:padding">@dimen/default_layout_padding</item>
+    </style>
+
+    <style name="PodLayout.PaddingLeftRight" parent="PodLayout">
+        <item name="android:paddingStart">@dimen/default_layout_padding</item>
+        <item name="android:paddingEnd">@dimen/default_layout_padding</item>
     </style>
 
     <style name="PodLayout.CollapsingToolbar" parent="PodLayout">
@@ -43,13 +52,20 @@
     </style>
 
     <style name="PodTextView.ItalicText">
-        <item name="android:textStyle">italic</item>
+        <item name="android:fontFamily">@font/artifika</item>
     </style>
 
     <style name="PodTextView.Title">
         <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:layout_marginTop">@dimen/title_margin_top</item>
+    </style>
+
+    <style name="PodTextView.Title.List">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="PodChipGroup" parent="Widget.MaterialComponents.ChipGroup">
@@ -89,7 +105,12 @@
     </style>
 
     <style name="PodClickableIcons.Favourite" parent="PodClickableIcons">
-        <item name="android:src">@drawable/fav_click_selector</item>
+        <item name="android:src">@drawable/fav_click_like</item>
+        <item name="android:contentDescription">@string/tap_to_like</item>
+    </style>
+
+    <style name="PodClickableIcons.Favourite.Liked" parent="PodClickableIcons">
+        <item name="android:src">@drawable/fav_click_dislike</item>
         <item name="android:contentDescription">@string/tap_to_like</item>
     </style>
 

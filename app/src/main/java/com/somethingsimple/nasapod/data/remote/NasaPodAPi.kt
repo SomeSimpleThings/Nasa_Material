@@ -1,7 +1,8 @@
-package com.somethingsimple.nasapod.data
+package com.somethingsimple.nasapod.data.remote
 
 import com.google.gson.GsonBuilder
 import com.somethingsimple.nasapod.BASE_URL
+import com.somethingsimple.nasapod.data.PictureOfDay
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
