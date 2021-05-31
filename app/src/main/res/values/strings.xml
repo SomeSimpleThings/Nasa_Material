@@ -23,5 +23,6 @@
     <string name="explore">Explore</string>
     <string name="tap_to_like">tap to like</string>
     <string name="tap_to_search_in_wiki">tap to search in wiki</string>
+    <string name="nasa_picture_of_the_day">NASA Picture of the day</string>
 
 </resources>
